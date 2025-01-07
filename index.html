@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Poème AI</title>
+</head>
+<body>
+    <h1>Générateur de Poèmes</h1>
+    <textarea id="prompt" placeholder="Saisissez un thème"></textarea>
+    <button onclick="generatePoem()">Générer</button>
+    <p id="poem"></p>
+
+    <script>
+        async function generatePoem() {
+            const prompt = document.getElementById("prompt").value;
+            const response = await fetch("/generate_poem", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ prompt }),
+            });
+            const data = await response.json();
+            document.getElementById("poem").innerText = data.poem;
+        }
+    </script>
+</body>
+</html>
