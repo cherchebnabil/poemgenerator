@@ -2,7 +2,7 @@ import openai
 import streamlit as st
 
 # Configurez votre clé API OpenAI
-openai.api_key = "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"
+openai.api_key = "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"
 
 # Interface Streamlit
 st.title("Générateur de poèmes")
