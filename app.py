@@ -10,16 +10,14 @@ prompt = st.text_area("Saisissez un thème pour votre poème :")
 
 if st.button("Générer un poème"):
     if prompt:
-        response = openai.ChatCompletion.create(  # Changement ici : utiliser ChatCompletion
+        # Utilisez la nouvelle méthode `openai.completions.create` dans la version 1.0.0+
+        response = openai.completions.create(  # Méthode correcte dans la version 1.0.0+
             model="gpt-3.5-turbo",  # Choisissez un modèle adapté
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prompt},  # Utilisation du prompt de l'utilisateur
-            ],
+            prompt=prompt,  # Utilisation du prompt de l'utilisateur
             max_tokens=150,
             temperature=0.7,
         )
         
-        st.text_area("Voici votre poème :", response['choices'][0]['message']['content'].strip(), height=200)
+        st.text_area("Voici votre poème :", response['choices'][0]['text'].strip(), height=200)
     else:
         st.warning("Veuillez saisir un thème avant de générer un poème.")
