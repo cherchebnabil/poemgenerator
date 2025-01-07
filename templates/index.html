@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de poémes</title>
+</head>
+<body>
+    <h1>Générer un poeme</h1>
+    <form method="POST">
+        <label for="theme">Specifiez un theme pour votre poéme:</label>
+        <input type="text" id="theme" name="theme" required>
+        <button type="submit">Generate</button>
+    </form>
+
+    {% if poem %}
+        <h2>Poéme généré:</h2>
+        <pre>{{ poem }}</pre>
+    {% endif %}
+</body>
+</html>
